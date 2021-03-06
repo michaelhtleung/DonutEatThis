@@ -16,3 +16,4 @@ build/
 *.git
 
 *.gitignore*
+*credentials*
