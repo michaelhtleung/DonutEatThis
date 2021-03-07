@@ -1,6 +1,15 @@
 
 
+
 window.onload = function() {
+    var ingredients = null;
+
+    let page1 = document.getElementById("page1");
+    let page2 = document.getElementById("page2");
+    let page3 = document.getElementById("page3");
+    page1.style.display = 'initial';
+    page2.style.display = 'none';
+    page3.style.display = 'none';
 
     let imageCapture = document.getElementById("capture_image");
     let imageUpload = document.getElementById("upload_image");
@@ -42,6 +51,44 @@ window.onload = function() {
         })    
         .then((response) => {
             console.log('success');
+            ingredients = response.data
+            page1.style.display = 'none';
+            page2.style.display = 'initial';
+            page3.style.display = 'none';
+
+            let parent = document.getElementById("all");
+
+            // populate page 2
+            // var title = document.createElement("div");
+            // title.classList.add("header");
+
+            var items_tag = document.createElement("div");
+            items_tag.classList.add("items");
+            parent.appendChild(items_tag)
+
+            for (var i = 0; i < ingredients.length; i++){
+                thing = ingredients[i]
+                var item_tag = document.createElement("div");
+                item_tag.classList.add("item");
+                items_tag.appendChild(item_tag)
+
+                var p = document.createElement("div");
+                var node = document.createTextNode(thing[i].synonym);
+                p.appendChild(node)
+                item_tag.appendChild(p)
+
+                var b = document.createElement("box-icon");
+                if (thing.score >= 0) {
+                    b.setAttribute("name", "sad");
+                    b.setAttribute("color", "#75cbac");
+                } else {
+                    b.setAttribute("name", "happy");
+                    b.setAttribute("color", "#ff8f8f");
+                }
+                item_tag.appendChild(b)
+            }
+            
+
         })
         .catch((err) => {
             console.log('failure');

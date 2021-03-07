@@ -8,13 +8,15 @@ from werkzeug.utils import secure_filename
 UPLOAD_FOLDER = 'uploads/'
 app = Flask(__name__)
 
+payload = None
 
 @app.route('/')
 def render_index():
     return render_template("index.html")
 
-@app.route('/scan_all')
+@app.route('/render_scan_all')
 def render_scan_all():
+    print('redirecting')
     return render_template("scan-all.html")
 
 # @app.route('/scan_safe')
@@ -49,8 +51,11 @@ def upload_img():
 
         payload = dp.process_image(path=path, content=content)
         print('image processed!')
-        return jsonify(payload=payload)
-    return '!!! !!! !!! image not uploaded...'
-
-    # print ('ok whatever redirect then')
+        # payload = 
+        print(payload)
+        # print(jsonify(payload=payload))
+        return payload
+    else:
+        print('!!! !!! !!! image not uploaded...')
+        return ('!!! !!! !!! image not uploaded...')
     # return redirect(url_for('render_scan_all'))
