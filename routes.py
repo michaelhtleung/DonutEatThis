@@ -9,9 +9,25 @@ UPLOAD_FOLDER = 'uploads/'
 app = Flask(__name__)
 
 
+@app.route('/')
 def render_index():
     return render_template("index.html")
 
+@app.route('/scan_all')
+def render_scan_all():
+    return render_template("scan-all.html")
+
+# @app.route('/scan_safe')
+# def render_scan_safe():
+#     return render_template("scan-safe.html")
+
+# @app.route('/scan_unsafe')
+# def render_scan_unsafe():
+#     return render_template("scan-unsafe.html")
+
+@app.route('/ingredients')
+def render_ingredients():
+    return render_template("ingredient.html")
 
 # @app.route('/uploadImage')
 @app.route('/', methods=['GET','POST'])
@@ -36,3 +52,5 @@ def upload_img():
         return jsonify(payload=payload)
 
     return '!!! !!! !!! image not uploaded...'
+    # print ('ok whatever redirect then')
+    # return redirect(url_for('render_scan_all'))

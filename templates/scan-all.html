@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Donut</title>
+    <meta name="description" content="Donut—Demystify ingredient lists">
+    <meta name="author" content="SitePoint">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+    <script src="static/scripts.js"></script>
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <!--favicon-->
+</head>
+
+<body>
+
+    <div class="system">
+        <img src="static/system.png" class="ios">
+    </div>
+
+    <div class="container" id="all">
+        <div class="header">
+            <h1>Scanned Ingredients</h1>
+        </div>
+
+        <div class="tabs">
+            <ul class="row">
+                <li class="active">All</li>
+                <li onclick="show_hide('safe')">Safe</li>
+                <li onclick="show_hide('unsafe')">Unsafe</li>
+            </ul>
+        </div>
+
+        <div class="items">
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='happy' color='#75cbac' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='sad' color='#ff8f8f' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='meh' color='#a7aaaf' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='happy' color='#75cbac' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='sad' color='#ff8f8f' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='meh' color='#a7aaaf' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='happy' color='#75cbac' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='sad' color='#ff8f8f' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='meh' color='#a7aaaf' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='happy' color='#75cbac' ></box-icon>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="container" id="safe">
+        <div class="header">
+            <h1>Scanned Ingredients</h1>
+        </div>
+
+        <div class="tabs">
+            <ul class="row">
+                <li onclick="show_hide('all')">All</li>
+                <li class="active">Safe</li>
+                <li onclick="show_hide('unsafe')">Unsafe</li>
+            </ul>
+        </div>
+
+        <div class="items">
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='happy' color='#75cbac' ></box-icon>
+            </div>
+
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='meh' color='#a7aaaf' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='happy' color='#75cbac' ></box-icon>
+            </div>
+
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='meh' color='#a7aaaf' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='happy' color='#75cbac' ></box-icon>
+            </div>
+
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='meh' color='#a7aaaf' ></box-icon>
+            </div>
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='happy' color='#75cbac' ></box-icon>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container" id="unsafe">
+        <div class="header">
+            <h1>Scanned Ingredients</h1>
+        </div>
+
+        <div class="tabs">
+            <ul class="row">
+                <li onclick="show_hide('all')">All</li>
+                <li onclick="show_hide('safe')">Safe</li>
+                <li class="active">Unsafe</li>
+            </ul>
+        </div>
+
+        <div class="items">
+
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='sad' color='#ff8f8f' ></box-icon>
+            </div>
+
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='sad' color='#ff8f8f' ></box-icon>
+            </div>
+
+            <div class="item">
+                <p>Chemical Compound</p>
+                <box-icon name='sad' color='#ff8f8f' ></box-icon>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    <div class="button-full">
+        <p>Scan Again</p>
+    </div>
+
+</body>
+
+</html>
