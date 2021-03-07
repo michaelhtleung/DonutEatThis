@@ -182,6 +182,7 @@ def process_image(path=None, content=None):
     cnx.close()
 
     # print(payload)
+    return payload
 
     # import json
     # with open('data.json', 'w') as outfile:

@@ -21,3 +21,5 @@ build/
 *.vscode/
 *.swp
 *~
+*.png
+node_modules/*
