@@ -1,6 +1,8 @@
-from flask import Flask
-from flask import Request
+import os
+from flask import Flask, request, redirect, url_for
+from werkzeug.utils import secure_filename
 
+UPLOAD_FOLDER = '/uploads/'
 app = Flask(__name__)
 
 
@@ -10,8 +12,11 @@ def hello():
 
 @app.route('/uploadImage', methods=['GET','POST'])
 def upload_img():
+    app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif']
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     if request.method == 'POST':
-        f = request.files['product_img']
-        f.save('/var/www/uploads/product_img.jpg')
+        img = request.files['product_img']
+        # img.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(img.filename)))
+        img.save(secure_filename(img.filename))
         return 'image uploaded!'
     return 'image not uploaded...'
