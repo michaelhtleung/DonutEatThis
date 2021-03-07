@@ -1,3 +1,5 @@
+import common_words
+
 import os
 import mysql.connector 
 
@@ -13,6 +15,10 @@ PASSWORD = "test"
 # connect to MySQL server
 cnx = mysql.connector.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
 print("Connected to:", cnx.get_server_info())
+
+payload = {
+    'ingredients': []
+}
 
 def detect_document(path):
     """Detects document features in an image."""
@@ -37,19 +43,32 @@ def detect_document(path):
                 # print('Paragraph confidence: {}'.format(paragraph.confidence))
 
                 for word in paragraph.words:
+                    # breakpoint()
                     # remove words with any french
-                    # if word.property:
-                    #     if word.property.detected_languages:
-                    #         for language in word.property.detected_languages:
-                    #             # breakpoint()
-                    #             if language.language_code:
-                    #                 # breakpoint()
-                    #                 if 'fr' == language.language_code:
-                    #                     # breakpoint()
-                    #                     continue
+                    exit_early = False
+                    try:
+                        if 'fr' in str(word.property.detected_languages):
+                            exit_early = True
+                            break
+                    except:
+                        pass
+                    if exit_early:
+                        pass
+                    
+
                     word_text = ''.join([
                         symbol.text for symbol in word.symbols
-                    ])
+                    ]).lower()
+                    # remove common words
+                    cw = common_words.get_common_words()
+                    if word_text in cw:
+                        continue
+
+                    # remove common baking words
+                    cw = {'preheat', 'minutes', 'pendan', 'flip', 'patties', 'colour', 'fermes', 'caven', 'modified', 'starch', 'sodium',  'dieppe', 'annan', 'canada', 'trademarks', 'cavendish', 'farms', 'rights', 'reserved'}
+                    if word_text in cw:
+                        continue
+
                     # print('Word text: {} (confidence: {})'.format(
                     #     word_text, word.confidence))
                     if word.confidence > 0.90:
@@ -68,9 +87,29 @@ def detect_document(path):
 # The name of the image file to annotate
 file_name = os.path.abspath('hashbrowns_ingredients.jpeg')
 search_term_list = detect_document(path=file_name)
-print(search_term_list )
 
-for search_term in search_term_list:
+def isEnglish(s):
+    # Taken from:https://stackoverflow.com/questions/27084617/detect-strings-with-non-english-characters-in-python
+    try:
+        s.encode(encoding='utf-8').decode('ascii')
+    except UnicodeDecodeError:
+        return False
+    else:
+        return True
+
+# remove filler words:
+
+# import nltk
+# words = set(nltk.corpus.words.words())
+# search_term_list = [nltk.wordpunct_tokenize(s).lower() for s in search_term_list]
+# search_term_list = [s for s in search_term_list if isEnglish(s) and len(s) >= 4 and s in words]
+# search_term_list = [nltk.wordpunct_tokenize(s) for s in search_term_list]
+
+search_term_list = [s for s in search_term_list if isEnglish(s) and len(s) >= 4]
+print(f"search_term_list: {search_term_list}")
+
+from tqdm import tqdm
+for search_term in tqdm(search_term_list):
     # SQL Query 1:
     cursor = cnx.cursor()
     query = (f"SELECT DISTINCT c.name FROM compounds AS c INNER JOIN compound_synonyms AS cs ON c.id=cs.source_id WHERE cs.synonym LIKE '%{search_term}%'")
@@ -78,7 +117,7 @@ for search_term in search_term_list:
     name_list = []
     for (element) in cursor:
         element = element[0]
-        print(element)
+        # print(element)
         name_list.append(element)
     cursor.close()
     if len(name_list) == 0:
@@ -96,7 +135,7 @@ for search_term in search_term_list:
         if element != 'NULL' and element != 'None' and element != None and len(element.split(' ')[0]) < 20:
             subclass = element
     cursor.close()
-    print(f'subclass: {subclass}')
+    # print(f'subclass: {subclass}')
     if subclass == None:
         continue
 
@@ -110,7 +149,7 @@ for search_term in search_term_list:
         # print(element)
         if element != 'NULL' and element != 'None' and element != None:
             effects.append(element)
-    print(f'effects: {effects}') # list of str
+    # print(f'effects: {effects}') # list of str
     cursor.close()
     if len(effects) == 0:
         continue
@@ -130,6 +169,20 @@ for search_term in search_term_list:
         is_healthy = True
     else:
         is_healthy = False
-    print(f'is_healthy: {is_healthy}')
+    # print(f'is_healthy: {is_healthy}')
+
+    payload['ingredients'].append({
+        'formal_name': search_term,
+        'score': sentiment.score,
+        'synonym': subclass,
+        # 'links': "placeholder link",
+        # 'link_image_data': 'placeholder image data',
+    })
 
 cnx.close()
+
+print(payload)
+
+import json
+with open('data.json', 'w') as outfile:
+    json.dump(payload, outfile)

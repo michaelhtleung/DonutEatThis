@@ -26,6 +26,16 @@ def detect_document(path):
 
                 for word in paragraph.words:
                     # remove words with any french
+                    exit_early = False
+                    try:
+                        for language in word.property.detected_languages:
+                            if 'fr' == language.language_code:
+                                exit_early = True
+                                break
+                    except:
+                        pass
+                    if exit_early:
+                        pass
                     # if word.property:
                     #     if word.property.detected_languages:
                     #         for language in word.property.detected_languages:
@@ -59,5 +69,6 @@ def test():
     response = detect_document(path=file_name)
     return response
 
-# file_name = os.path.abspath('hashbrowns_ingredients.jpeg')
-# response = detect_document(path=file_name)
+file_name = os.path.abspath('hashbrowns_ingredients.jpeg')
+response = detect_document(path=file_name)
+print(response)
