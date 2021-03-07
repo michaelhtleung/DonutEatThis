@@ -26,21 +26,21 @@ def detect_document(path):
 
                 for word in paragraph.words:
                     # remove words with any french
-                    if word.property:
-                        if word.property.detected_languages:
-                            for language in word.property.detected_languages:
-                                # breakpoint()
-                                if language.language_code:
-                                    # breakpoint()
-                                    if 'fr' == language.language_code:
-                                        # breakpoint()
-                                        continue
+                    # if word.property:
+                    #     if word.property.detected_languages:
+                    #         for language in word.property.detected_languages:
+                    #             # breakpoint()
+                    #             if language.language_code:
+                    #                 # breakpoint()
+                    #                 if 'fr' == language.language_code:
+                    #                     # breakpoint()
+                    #                     continue
                     word_text = ''.join([
                         symbol.text for symbol in word.symbols
                     ])
                     # print('Word text: {} (confidence: {})'.format(
                     #     word_text, word.confidence))
-                    if word.confidence > 90:
+                    if word.confidence > 0.90:
                         result.append(word_text)
     if response.error.message:
         raise Exception(
