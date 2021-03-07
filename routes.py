@@ -29,13 +29,13 @@ def render_scan_all():
 def render_ingredients():
     return render_template("ingredient.html")
 
-# @app.route('/uploadImage')
-@app.route('/', methods=['GET','POST'])
+@app.route('/uploadImage', methods=['GET','POST'])
 def upload_img():
     print ('upload image called')
     app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.jpeg', '.png', '.gif']
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     if request.method == 'POST':
+        pass
         print ('in POST')
         img = request.files['file']
         print ('received image')
@@ -50,7 +50,7 @@ def upload_img():
         payload = dp.process_image(path=path, content=content)
         print('image processed!')
         return jsonify(payload=payload)
-
     return '!!! !!! !!! image not uploaded...'
+
     # print ('ok whatever redirect then')
     # return redirect(url_for('render_scan_all'))

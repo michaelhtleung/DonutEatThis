@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Donut</title>
     <meta name="description" content="Donut—Demystify ingredient lists">
     <meta name="author" content="SitePoint">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="static/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="static/styles.css">
+
 </head>
 
 <body>
     <div class="system">
-        <img src="static/system.png" class="ios">
+        <!-- <img src="static/system.png" class="ios"> -->
     </div>
     <div class="container">
         <div class="logo">
@@ -27,18 +30,18 @@
         </div>
     </div>
 
-    <div class="buttons">
-        <form method="post" action="/" enctype="multipart/form-data" id="form" name="form">
-            <input type="submit">
-            <div class="button-main">
-                <label for="capture_image">Scan an Item</label>
-                <input type="file" style="visibility:hidden; width: 0;" id="capture_image" name="file" accept="image/*" capture="environment">
-            </div>
-            <div class="button-second">
-                <label for="upload_image">Upload an Image</label>
-                <input type="file" style="visibility:hidden; width: 0;" id="upload_image" name="file">
-            </div>
-        </form>
+    <div class="buttons" id='buttons_id'>
+        <!-- <form method="post" action="/uploadImage" enctype="multipart/form-data" id="form" name="form"> -->
+        <input type="submit">
+        <div class="button-main">
+            <label for="capture_image">Scan an Item</label>
+            <input type="file" style="visibility:hidden; width: 0;" id="capture_image" name="file" accept="image/*" capture="environment">
+        </div>
+        <div class="button-second">
+            <label for="upload_image">Upload an Image</label>
+            <input type="file" style="visibility:hidden; width: 0;" id="upload_image" name="file">
+        </div>
+        <!-- </form> -->
     </div>
 
 </body>
