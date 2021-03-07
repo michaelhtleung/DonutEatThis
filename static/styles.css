@@ -152,6 +152,10 @@ a {
 .button-second p {
     color: #000;
 }
+.button-second label {
+    color: #000;
+}
+
 
 .button-full {
     /*position: absolute;*/
@@ -171,6 +175,9 @@ a {
 }
 
 .button-full p {
+    font-weight: 500;
+}
+.button-full label {
     font-weight: 500;
 }
 
@@ -265,6 +272,9 @@ li {
 }
 
 .back p {
+    font-weight: 500;
+}
+.back label {
     font-weight: 500;
 }
 

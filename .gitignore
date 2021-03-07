@@ -17,4 +17,9 @@ build/
 
 *.gitignore*
 *credentials*
+
+*.vscode/
+*.swp
+*~
 *.png
+node_modules/*

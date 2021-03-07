@@ -1,41 +1,199 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
     <title>Donut</title>
     <meta name="description" content="Donut—Demystify ingredient lists">
     <meta name="author" content="SitePoint">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0;">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <script src='static/upload_img.js'></script>
-    <!--favicon-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="static/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <link rel="stylesheet" href="static/styles.css">
+
 </head>
 
 <body>
-    <div class="system">
-        <img src="images/system.png" class="ios">
-    </div>
-    <div class="container">
-        <div class="logo">
+    <div id="page1">
+        <div class="system">
+            <img src="static/system.png" class="ios">
         </div>
-        <div class="onboarding">
-            <h2>Demystify Ingredient lists</h2>
-            <p>Find out what you're really eating</p>
+        <div class="container">
+            <div class="logo">
+                <img src="static/logo.svg">
+            </div>
+
+            <div class="onboarding">
+                <h2>Donut eat this!</h2>
+                <p>Demystify ingredient lists and find out what you’re really eating</p>
+                <img src="static/graphic.svg" class="graphic">
+            </div>
+        </div>
+
+        <div class="buttons" id='buttons_id'>
+            <!-- <form method="post" action="/uploadImage" enctype="multipart/form-data" id="form" name="form"> -->
+            <input type="submit" style="visibility:hidden; width: 0;">
+            <div class="button-main">
+                <label for="capture_image">Scan an Item</label>
+                <input type="file" style="visibility:hidden; width: 0;" id="capture_image" name="file" accept="image/*" capture="environment">
+            </div>
+            <div class="button-second">
+                <label for="upload_image">Upload an Image</label>
+                <input type="file" style="visibility:hidden; width: 0;" id="upload_image" name="file">
+            </div>
+            <!-- </form> -->
         </div>
     </div>
 
-    <div class="button-main">
-        <form method="post" action="/" enctype="multipart/form-data" id="form" name="form">
-            <label for="capture_image">Scan an item</label>
-            <input type="file" style="visibility:hidden;" id="capture_image" name="file" accept="image/*" capture="environment">
-            <br>
-            <label for="upload_image">Upload an image</label>
-            <input type="file" style="visibility:hidden;" id="upload_image" name="file">
-        </form>
+    <div id="page2" style="display: none;">
+        <div class="system">
+            <img src="static/system.png" class="ios">
+        </div>
+    
+        <div class="container" id="all">
+            <div class="header">
+                <h1>Scanned Ingredients</h1>
+            </div>
+    
+            <div class="tabs">
+                <ul class="row">
+                    <li class="active">All</li>
+                    <li onclick="show_hide('safe')">Safe</li>
+                    <li onclick="show_hide('unsafe')">Unsafe</li>
+                </ul>
+            </div>
+            <div class="items">
+                <div class="item">
+                    <p>Dextrose</p>
+                    <box-icon name='happy' color='#75cbac' ></box-icon>
+                </div>
+                <div class="item">
+                    <p>Pyrophosphate</p>
+                    <box-icon name='sad' color='#ff8f8f' ></box-icon>
+                </div>
+            </div>
+
+    
+        </div>
+    
+        <!-- <div class="button-full">
+            <p>Scan Again</p>
+        </div> -->
+    </div>
+
+    <div id='page3' style='display: none;'>
+
+
+        <div class="system">
+            <img src="static/system.png" class="ios">
+        </div>
+
+        <div class="container">
+            <div class="header">
+
+                <a href="scan-all.html">
+                <div class="back">
+                    <box-icon name='arrow-back' color='#ffffff' class="left" ></box-icon>
+                    <p>Back</p>
+                </div>
+                </a>
+
+
+                <h1>Dextrose</h1>
+            </div>
+
+            <div class="info-box">
+                <div class="info">
+                    <h3>Compound Type</h3>
+                    <p>Monosaccharide</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+
+                <div class="info">
+                    <h3>Overall Rating</h3>
+
+                    <div class="rating">
+                        <box-icon name='happy' color='#FFFFFF' class="left" ></box-icon>
+                        <p>Positive</p>
+                    </div>
+
+                    <div class="info">
+                        <h3>Breakdown</h3>
+                        <div class="score">
+                            <p>Health Rating</p>
+                            <p class="bold">7/10</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="header">
+                <h2>Related Articles</h2>
+            </div>
+
+            <div class="articles">
+                <div class="article">
+                    <div class="thumb-img">
+                        <img src="static/S1.png">
+                    </div>
+
+                    <div class="article-info">
+                        <p class="bold">Lorem ipsum dolor si amet</p>
+                        <p class="subtle">New York Times</p>
+                    </div>
+
+                </div>
+
+                <div class="article">
+                    <div class="thumb-img">
+                        <img src="static/S1.png">
+                    </div>
+
+                    <div class="article-info">
+                        <p class="bold">Lorem ipsum dolor si amet</p>
+                        <p class="subtle">New York Times</p>
+                    </div>
+
+                </div>
+
+                <div class="article">
+                    <div class="thumb-img">
+                        <img src="static/S1.png">
+                    </div>
+
+                    <div class="article-info">
+                        <p class="bold">Lorem ipsum dolor si amet</p>
+                        <p class="subtle">New York Times</p>
+                    </div>
+
+                </div>
+
+                <div class="article">
+                    <div class="thumb-img">
+                        <img src="static/S1.png">
+                    </div>
+
+                    <div class="article-info">
+                        <p class="bold">Lorem ipsum dolor si amet</p>
+                        <p class="subtle">New York Times</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
     </div>
 
 </body>
+
 </html>
