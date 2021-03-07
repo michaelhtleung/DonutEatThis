@@ -10,7 +10,6 @@ app = Flask(__name__)
 def render_index():
     return render_template("index.html")
 
-
 @app.route('/', methods=['GET','POST'])
 def upload_img():
     print ('upload image called')

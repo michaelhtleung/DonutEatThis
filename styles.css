@@ -89,6 +89,13 @@ p {
     font-weight: 300;
     margin: 0;
 }
+label {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 300;
+    margin: 0;
+}
 
 .bold {
     font-weight: 500;
@@ -115,6 +122,10 @@ a {
 }
 
 .buttons p {
+    font-weight: 500;
+}
+
+.buttons label {
     font-weight: 500;
 }
 

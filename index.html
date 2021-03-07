@@ -35,15 +35,27 @@
 
     </div>
 
-
     <div class="buttons">
+        <form method="post" action="/" enctype="multipart/form-data" id="form" name="form">
+            <div class="button-main">
+                <label for="capture_image">Scan an Item</label>
+                <input type="file" style="visibility:hidden;" id="capture_image" name="file" accept="image/*" capture="environment">
+            </div>
+            <div class="button-second">
+                <label for="upload_image">Upload an Image</label>
+                <input type="file" style="visibility:hidden;" id="upload_image" name="file">
+            </div>
+        </form>
+    </div>
+
+    <!-- <div class="buttons">
         <div class="button-main">
             <p>Scan an Item</p>
         </div>
         <div class="button-second">
             <p>Upload an Image</p>
         </div>
-    </div>
+    </div> -->
 
 
 </body>
