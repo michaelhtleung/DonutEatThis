@@ -17,3 +17,5 @@ build/
 
 *.gitignore*
 *credentials*
+*.png
+node_modules/*
