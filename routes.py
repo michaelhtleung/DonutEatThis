@@ -14,13 +14,13 @@ def render_index():
 def render_scan_all():
     return render_template("scan-all.html")
 
-@app.route('/scan_safe')
-def render_scan_safe():
-    return render_template("scan-safe.html")
+# @app.route('/scan_safe')
+# def render_scan_safe():
+#     return render_template("scan-safe.html")
 
-@app.route('/scan_unsafe')
-def render_scan_unsafe():
-    return render_template("scan-unsafe.html")
+# @app.route('/scan_unsafe')
+# def render_scan_unsafe():
+#     return render_template("scan-unsafe.html")
 
 @app.route('/ingredients')
 def render_ingredients():
@@ -39,4 +39,4 @@ def upload_img():
     #     print ('saved image')
     #     return redirect(url_for('render_scan_safe'))
     print ('ok whatever redirect then')
-    return redirect(url_for('render_scan_safe'))
+    return redirect(url_for('render_scan_all'))
