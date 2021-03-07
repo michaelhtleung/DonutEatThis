@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Donut</title>
+    <meta name="description" content="Donut—Demystify ingredient lists">
+    <meta name="author" content="SitePoint">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src='static/upload_img.js'></script>
+    <!--favicon-->
+</head>
+
+<body>
+    <div class="system">
+        <img src="images/system.png" class="ios">
+    </div>
+    <div class="container">
+        <div class="logo">
+        </div>
+        <div class="onboarding">
+            <h2>Demystify Ingredient lists</h2>
+            <p>Find out what you're really eating</p>
+        </div>
+    </div>
+
+    <div class="button-main">
+        <form method="post" action="/" enctype="multipart/form-data" id="form" name="form">
+            <label for="capture_image">Scan an item</label>
+            <input type="file" style="visibility:hidden;" id="capture_image" name="file" accept="image/*" capture="environment">
+            <br>
+            <label for="upload_image">Upload an image</label>
+            <input type="file" style="visibility:hidden;" id="upload_image" name="file">
+        </form>
+    </div>
+
+</body>
+</html>
